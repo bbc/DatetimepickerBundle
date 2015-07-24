@@ -1,4 +1,4 @@
-This is a fork from https://github.com/c960657/DatetimepickerBundle with updated bootstrap-datetimepicker. 
+This is a fork with delicious changes and library updates.
 
 #DatetimepickerBundle
 
