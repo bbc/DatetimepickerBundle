@@ -80,8 +80,8 @@ class DatetimeType extends AbstractType
                 if (!$value instanceof \DateTimeImmutable) {
                     $value = clone $value;
                 }
-                $timezone = new \DateTimeZone($options['view_timezone']);
-                $pickerOptions[$name] = $value->setTimezone($timezone)->format('Y-m-d H:i:s');
+
+                $pickerOptions[$name] = $value->format('Y-m-d H:i:s');
             }
         }
 
