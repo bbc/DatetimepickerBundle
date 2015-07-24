@@ -1,3 +1,5 @@
+This is a fork from https://github.com/c960657/DatetimepickerBundle with updated bootstrap-datetimepicker. 
+
 #DatetimepickerBundle
 
 This bundle implements the [Bootstrap DateTime Picker](https://github.com/smalot/bootstrap-datetimepicker) in a Form Type for Symfony 2.*. The bundle structure is inspired by GenemuFormBundle.
@@ -16,7 +18,7 @@ Add the following dependency to your composer.json file:
 {
     "require": {
 
-        "stephanecollot/datetimepicker-bundle": "dev-master"
+        "qambar/datetimepicker-bundle": "dev-master"
     }
 }
 ```
