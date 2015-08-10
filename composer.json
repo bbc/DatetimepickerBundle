@@ -1,6 +1,6 @@
 {
     "name": "qambar/datetimepicker-bundle",
-    "version": "1.3",
+    "version": "1.4",
     "description": "Symfony bundle for Bootstrap DateTime picker",
     "keywords": ["symfony", "bootstrap", "bundle", "picker", "datepicker", "timepicker"],
     "type": "symfony-bundle",
