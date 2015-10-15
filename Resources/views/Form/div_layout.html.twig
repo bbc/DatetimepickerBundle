@@ -2,24 +2,17 @@
 
 {% block collot_datetime_widget %}
 {% spaceless %}
-    {% if widget == "single_text" %}
-        {{ block("form_widget_simple") }}
-    {% else %}
-        <div {{ block("widget_container_attributes") }}>
-            {{ date_pattern|replace({
-                "{{ year }}":  form_widget(form.year),
-                "{{ month }}": form_widget(form.month),
-                "{{ day }}":   form_widget(form.day),
-            })|raw }}
-
-            {% set attr = {"size": 10}|merge(attr) %}
-            {% set id = "datepicker_" ~ id %}
-            {% set value = '' %}
-            {% set full_name = "datepicker_" ~ full_name %}
-            {{ block("hidden_widget") }}
-        </div>
-    {% endif %}
+    <div class='input-group date' id="{{ id }}">
+        <input type='text' class="form-control" />
+        <span class="input-group-addon">
+            <span class="fa fa-calendar"></span>
+        </span>
+    </div>
+    <input id="{{ id }}_real" name="{{ full_name }}" type="hidden" value="" />
 {% endspaceless %}
+
+
+
 {% endblock collot_datetime_widget %}
 
 

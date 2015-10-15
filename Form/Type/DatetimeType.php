@@ -68,7 +68,7 @@ class DatetimeType extends AbstractType
 
         //Set the defaut format of malot.fr/bootstrap-datetimepicker
         if(!isset($pickerOptions['format']))
-            $pickerOptions['format'] = 'mm/dd/yyyy HH:ii';
+            $pickerOptions['format'] = 'dd/mm/yyyy HH:ii';
 
         if ($pickerOptions['formatter'] == 'php'){
             $pickerOptions['format'] = DatetimeType::convertIntlFormaterToMalot( $pickerOptions['format'] );
@@ -100,6 +100,8 @@ class DatetimeType extends AbstractType
         $resolver
             ->setDefaults(array(
                 'widget' => 'single_text',
+                'model_timezone' => 'UTC',
+                'view_timezone' => 'UTC',
                 'format' => function (Options $options, $value) use ($configs) {
                     $pickerOptions = array_merge($configs, $options['pickerOptions']);
 
@@ -107,13 +109,13 @@ class DatetimeType extends AbstractType
                         if (isset($pickerOptions['format'])){
                             return $pickerOptions['format'];
                         } else {
-                            return 'mm/dd/yyyy HH:ii';
+                            return 'dd/mm/yyyy HH:ii';
                         }
                     } elseif ($pickerOptions['formatter'] == 'js'){
                         if (isset($pickerOptions['format'])){
                             return DatetimeType::convertMalotToIntlFormater( $pickerOptions['format'] );
                         } else {
-                            return DatetimeType::convertMalotToIntlFormater( 'mm/dd/yyyy HH:ii' );
+                            return DatetimeType::convertMalotToIntlFormater( 'dd/mm/yyyy HH:ii' );
                         }
                     }
                 },
