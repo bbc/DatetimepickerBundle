@@ -31,18 +31,6 @@ class DatetimeType extends AbstractType
     private $options;
 
     /**
-     *
-     * @var array
-     */
-    private static $malotFormater = array("yyyy", "yyyy", "ss", "ii", "hh", "HH", "dd", "mm", "MM",   "yy", "p", "P", "s", "i", "h", "H", "d", "m", "M");
-
-    /**
-     *
-     * @var array
-     */
-    private static $intlFormater  = array("y", "yyyy", "ss", "mm", "HH", "hh", "dd", "MM", "MMMM", "yy", "a", "a", "s", "m", "H", "h", "d", "M", "MMM");
-
-    /**
     * Constructs
     *
     * @param array $options
@@ -58,7 +46,9 @@ class DatetimeType extends AbstractType
     */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $pickerOptions = array_merge($this->options, $options['pickerOptions']);
+        if (isset($options['pickerOptions'])) {
+            $pickerOptions = array_merge($this->options, $options['pickerOptions']);
+        }
 
         //Set automatically the language
         if(!isset($pickerOptions['language']))
@@ -66,13 +56,6 @@ class DatetimeType extends AbstractType
         if($pickerOptions['language'] == 'en')
             unset($pickerOptions['language']);
 
-        //Set the defaut format of malot.fr/bootstrap-datetimepicker
-        if(!isset($pickerOptions['format']))
-            $pickerOptions['format'] = 'dd/mm/yyyy HH:ii';
-
-        if ($pickerOptions['formatter'] == 'php'){
-            $pickerOptions['format'] = DatetimeType::convertIntlFormaterToMalot( $pickerOptions['format'] );
-        }
 
         // Convert DateTimeInterface objects to date strings before passing to JavaScript.
         foreach ($pickerOptions as $name => $value) {
@@ -102,69 +85,9 @@ class DatetimeType extends AbstractType
                 'widget' => 'single_text',
                 'model_timezone' => 'UTC',
                 'view_timezone' => 'UTC',
-                'format' => function (Options $options, $value) use ($configs) {
-                    $pickerOptions = array_merge($configs, $options['pickerOptions']);
-
-                    if ($pickerOptions['formatter'] == 'php'){
-                        if (isset($pickerOptions['format'])){
-                            return $pickerOptions['format'];
-                        } else {
-                            return 'dd/mm/yyyy HH:ii';
-                        }
-                    } elseif ($pickerOptions['formatter'] == 'js'){
-                        if (isset($pickerOptions['format'])){
-                            return DatetimeType::convertMalotToIntlFormater( $pickerOptions['format'] );
-                        } else {
-                            return DatetimeType::convertMalotToIntlFormater( 'dd/mm/yyyy HH:ii' );
-                        }
-                    }
-                },
+                'format' =>  'dd/MM/yyyy hh:mm',
                 'pickerOptions' => array(),
             ));
-    }
-
-    /**
-     * Convert the PHP date format to Bootstrap Datetimepicker date format
-     */
-    public static function convertIntlFormaterToMalot($formatter)
-    {
-        $intlToMalot = array_combine(self::$intlFormater, self::$malotFormater);
-
-        $patterns = preg_split('([\\\/.:_;,\s-\ ]{1})', $formatter);
-        $exits = array();
-
-        foreach ($patterns as $val) {
-            if (isset($intlToMalot[$val])){
-                $exits[$val] = $intlToMalot[$val];
-            } else {
-                // it can throw an Exception
-                $exits[$val] = $val;
-            }
-        }
-
-        return str_replace(array_keys($exits), array_values($exits), $formatter);
-    }
-
-    /**
-     * Convert the Bootstrap Datetimepicker date format to PHP date format
-     */
-    public static function convertMalotToIntlFormater($formatter)
-    {
-        $malotToIntl = array_combine(self::$malotFormater, self::$intlFormater);
-
-        $patterns = preg_split('([\\\/.:_;,\s-\ ]{1})', $formatter);
-        $exits = array();
-
-        foreach ($patterns as $val) {
-            if (isset($malotToIntl[$val])){
-                $exits[$val] = $malotToIntl[$val];
-            } else {
-                // it can throw an Exception
-                $exits[$val] = $val;
-            }
-        }
-
-        return str_replace(array_keys($exits), array_values($exits), $formatter);
     }
 
     /**
