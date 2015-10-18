@@ -85,7 +85,8 @@ class DatetimeType extends AbstractType
                 'widget' => 'single_text',
                 'model_timezone' => 'UTC',
                 'view_timezone' => 'UTC',
-                'format' =>  'dd/MM/yyyy hh:mm',
+                'date_format' => 'dd/MM/yyyy H:i',
+                'format' =>  "yyyy-MM-dd'T'HH:mm:ssZZZZZ",
                 'pickerOptions' => array(),
             ));
     }

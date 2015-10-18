@@ -877,7 +877,7 @@
                   element.data('date', date.format(actualFormat));
 
                   var bozimsField = $(element).attr('id') + "_real";
-                  $("#" + bozimsField).val(moment.utc(date).format("DD/MM/YYYY HH:mm"));
+                  $("#" + bozimsField).val(date.format('YYYY-MM-DDTHH:mm:ssZ'));
 
                   unset = false;
                   update();
@@ -2441,7 +2441,7 @@
             vertical: 'auto'
         },
         widgetParent: null,
-        ignoreReadonly: false,
+        ignoreReadonly: true,
         keepOpen: false,
         focusOnShow: true,
         inline: false,
