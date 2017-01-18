@@ -9,13 +9,12 @@
         {
             "name": "Qambar Raza",
             "name": "Stephane Collot"
-            
         }
     ],
     "require": {
         "php": ">=5.3",
         "symfony/framework-bundle": "2.*",
-        "symfony/symfony": "2.*"
+        "symfony/symfony": "^2.7"
     },
     "autoload":     {
         "psr-0": {
