@@ -1,6 +1,6 @@
 {
     "name": "qambar/datetimepicker-bundle",
-    "version": "2.3",
+    "version": "2.4",
     "description": "Symfony bundle for Bootstrap DateTime picker",
     "keywords": ["symfony", "bootstrap", "bundle", "picker", "datepicker", "timepicker"],
     "type": "symfony-bundle",
@@ -8,6 +8,7 @@
     "authors": [
         {
             "name": "Qambar Raza",
+            "name": "Ben Scott",
             "name": "Stephane Collot"
         }
     ],
