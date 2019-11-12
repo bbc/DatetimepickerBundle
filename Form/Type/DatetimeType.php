@@ -34,7 +34,7 @@ class DatetimeType extends AbstractType
     *
     * @param array $options
     */
-    public function __construct(array $options)
+    public function __construct(array $options = array())
     {
         $this->options = $options;
 
@@ -101,7 +101,7 @@ class DatetimeType extends AbstractType
     
     public function getName()
     {
-        return 'collot_datetime';
+        return $this->getBlockPrefix();
     }
 
     public function getBlockPrefix()
