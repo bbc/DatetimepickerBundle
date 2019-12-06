@@ -1,6 +1,6 @@
 {
     "name": "bbc/datetimepicker-bundle",
-    "version": "2.5",
+    "version": "3.0",
     "description": "Symfony bundle for Bootstrap DateTime picker",
     "keywords": ["symfony", "bootstrap", "bundle", "picker", "datepicker", "timepicker"],
     "type": "symfony-bundle",
